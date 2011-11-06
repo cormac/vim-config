@@ -37,7 +37,7 @@ set noswapfile
 
 set hid " change buffer without save
 
-map <C-B> :NERDTree<cr> " open nerdtree file browser
+map <C-B> :NERDTreeToggle<cr> " open nerdtree file browser
 
 " Use the arrows to something useful changed to use Ctrl arrow, arrows were
 " pissing me off
@@ -60,6 +60,12 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete " no worky neither
 set dict +=~/.vim/dictionaries/drupal6.dict
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Parentheses
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:hi MatchParen cterm=bold ctermbg=none ctermfg=none "embolden matching parentheses
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Stuff that no work
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When vimrc is edited, reload it - doesn't seem to work always
@@ -67,3 +73,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 map! <C-q> <C-xk> " supposed to map autocomplete to Ctrl - Space
 :inoremap <C-x><C-o> <C-q>
+
+nmap <F4> :w<CR>:make<CR>:cw<CR>
+
+
