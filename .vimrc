@@ -7,8 +7,6 @@ if has("autocmd")
   augroup END
 endif
 syntax on
-
-
 set expandtab " tabs become spaces
 set tabstop=2 " width of tabs
 set shiftwidth=2
