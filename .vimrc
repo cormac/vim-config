@@ -4,9 +4,11 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
+    autocmd BufRead,BufNewFile *.inc set filetype=php
   augroup END
 endif
 syntax on
+let mapleader=","
 set expandtab " tabs become spaces
 set tabstop=2 " width of tabs
 set shiftwidth=2
@@ -22,6 +24,8 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 set showmatch "Show matching bracets when text indicator is over them
 set ruler " show current position
 set nocompatible
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr> " map ,ev to oedit my vimrc file
 
 " Set backspace config
 set backspace=eol,start,indent
@@ -41,7 +45,6 @@ map <C-B> :NERDTreeToggle<cr> " open nerdtree file browser
 " pissing me off
 map <C-right> :bn<cr>
 map <C-left> :bp<cr>
-
 filetype plugin on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -70,8 +73,12 @@ set dict +=~/.vim/dictionaries/drupal6.dict
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 map! <C-q> <C-xk> " supposed to map autocomplete to Ctrl - Space
-:inoremap <C-x><C-o> <C-q>
+inoremap <C-x><C-o> <C-q>
 
 nmap <F4> :w<CR>:make<CR>:cw<CR>
 
+set pastetoggle=<F2>
 
+iabbrev adn and
+iabbrev tehn then
+iabbrev waht what
