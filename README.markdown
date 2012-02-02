@@ -8,3 +8,9 @@ Installation
 If you want to install quickly run the install.sh file, but be warned, all it does is copy the .vimrc file to your home directory, so any old one will be overwritten. To be nice the old one will first be copied to '~/.vimrc.bak'. 
 
 It also moves your old .vim folder to .vim.bak and writes my plugins into a new .vim - so there
+
+Update
+------
+I've started using pathogen to manage plugins. Turns out it's awesome, so I've added it here. Thanks Tim Pope http://tpo.pe/
+
+
