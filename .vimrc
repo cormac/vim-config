@@ -1,3 +1,10 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Pathogen inclusion 
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call pathogen#infect()
+call pathogen#helptags()
+
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup module
@@ -7,6 +14,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.inc set filetype=php
   augroup END
 endif
+
 syntax on
 let mapleader=","
 set expandtab " tabs become spaces
@@ -65,6 +73,24 @@ set dict +=~/.vim/dictionaries/drupal6.dict
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :hi MatchParen cterm=bold ctermbg=none ctermfg=none "embolden matching parentheses
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_phpcs_conf=" --standard=DrupalCodingStandard --extensions=php,module,inc,install,test,profile,theme"
+" from https://github.com/spf13/spf13-vim/blob/master/.vimrc
+if has('statusline')
+  set laststatus=2
+  " Broken down into easily includeable segments
+  set statusline=%<%f\    " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=\ [%{&ff}/%Y]            " filetype
+  set statusline+=%#warningmsg#
+  set statusline+=%{fugitive#statusline()}
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_enable_signs=1
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Stuff that no work
@@ -76,7 +102,7 @@ map! <C-q> <C-xk> " supposed to map autocomplete to Ctrl - Space
 inoremap <C-x><C-o> <C-q>
 
 nmap <F4> :w<CR>:make<CR>:cw<CR>
-
+nmap <F8> :TagbarToggle<CR>
 set pastetoggle=<F2>
 
 iabbrev adn and
