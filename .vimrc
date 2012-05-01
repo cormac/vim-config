@@ -12,6 +12,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.install set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
     autocmd BufRead,BufNewFile *.inc set filetype=php
+    autocmd BufRead,BufNewFile *.tpl set filetype=html
   augroup END
 endif
 
@@ -22,6 +23,8 @@ set tabstop=2 " width of tabs
 set shiftwidth=2
 set autoindent " auto indentation
 set smartindent
+
+set fdm=syntax
 
 set hlsearch "highlight search terms
 set incsearch " highlight and search to while typing
@@ -49,10 +52,13 @@ set hid " change buffer without save
 
 map <C-B> :NERDTreeToggle<cr> " open nerdtree file browser
 
-" Use the arrows to something useful changed to use Ctrl arrow, arrows were
-" pissing me off
-map <C-right> :bn<cr>
-map <C-left> :bp<cr>
+" Use the arrows to switch buffers
+map <right> :bn<cr>
+map <left> :bp<cr>
+
+" alt left right for buffer switching
+nnoremap <A-Left> :tabprevious<CR>
+nnoremap <A-Right> :tabnext<CR>
 filetype plugin on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -72,6 +78,14 @@ set dict +=~/.vim/dictionaries/drupal6.dict
 " => Parentheses
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :hi MatchParen cterm=bold ctermbg=none ctermfg=none "embolden matching parentheses
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Php doc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+source ~/.vim/bundle/phpdoc/phpdoc.vim 
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
+nnoremap <C-P> :call PhpDocSingle()<CR> 
+vnoremap <C-P> :call PhpDocRange()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
@@ -108,3 +122,13 @@ set pastetoggle=<F2>
 iabbrev adn and
 iabbrev tehn then
 iabbrev waht what
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => drush stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> :Dcc<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => macvim colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:colorscheme koehler
