@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/nerdtcommenter"]
 	path = .vim/bundle/nerdtcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
