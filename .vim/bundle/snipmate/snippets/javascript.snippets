@@ -11,7 +11,7 @@ snippet fun
 	}
 # Anonymous Function
 snippet f
-	function(${1}) {${2}};
+	function(${1}) {${2}},${3}
 # if
 snippet if
 	if (${1:true}) {${2}};
@@ -65,10 +65,112 @@ snippet :f
 	}${3:,}
 # setTimeout function
 snippet timeout
-	setTimeout(function() {${3}}${2}, ${1:10};
+	setTimeout(function() {${3}}${2}, ${1:10});
 # Get Elements
 snippet get
 	getElementsBy${1:TagName}('${2}')${3}
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+snippet test
+	test('${1}', function () {
+		expect(1);
+	});
+snippet asyncTest
+	asyncTest('${1}', function () {
+		expect(1);
+		${2}
+		setTimeout(function() {
+		}, 500);
+	});
+
+snippet fo
+	${1}: function(${2}) {
+		${3}
+	},
+
+snippet module
+  module( "${1}", {
+      setup: function() {
+      },
+      teardown: function() {
+      }
+  });
+
+snippet describe
+	describe('${1}', function () {
+		//var 
+
+		beforeEach(function() {
+		});
+
+		it('${2}', function() {
+			${3}
+		});
+		
+	});
+
+snippet it
+	it('${1}', function() {
+		${2}
+	});
+	
+snippet define
+	define (
+		[
+			${1}
+		],
+		function (${2}) {
+			'use strict';
+	});
+
+snippet view
+	// ### ${1:view name}View
+	// ${2}
+	$1View = Backbone.View.extend({
+		initialize: function() {
+		},
+		onDestroy: function() {
+		},
+		render: function() {
+		}
+	});
+
+snippet collection
+	// ### ${1}Collection
+	// ${2}
+	$1Collection = Backbone.Collection.extend({
+		initialize: function() {
+		}
+	});
+
+snippet model
+	// ### ${1}Model
+	// ${2}
+	$1Model = Backbone.Model.extend({
+		initialize: function() {
+		},
+		url: function() {
+		}
+	});
+
+snippet head
+	/*global ${1:globals}*/
+	// Author: Cormac McGuire
+	// ### Description
+	// ${2:What the file is for}
+
+snippet testhead
+	/*global ${1:globals}runs, waitsFor, jasmine, describe, beforeEach, xit, it, expect*/
+	// Author: Cormac McGuire
+	// ### Description
+	// ${2:What the file is for}
+
+snippet runs
+	runs(function() {
+		${1}
+	});
+	waitsFor(function() {
+	});
+	runs(function() {
+	});

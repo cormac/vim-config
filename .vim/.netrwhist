@@ -1,10 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Library/WebServer/Documents/shotclip.mac.com/docs/sites/all/modules/contrib/backbone'
-let g:netrw_dirhist_2='/Users/cormac/work'
-let g:netrw_dirhist_3='/Users/cormac/work/clients/myplace/backup-script/rua/sys'
-let g:netrw_dirhist_4='/Library/WebServer/Documents/shotclip.mac.com/docs/sites/all/modules'
-let g:netrw_dirhist_5='/Library/WebServer/Documents/shotclip.mac.com/docs/sites/all/modules/custom/shotclip'
-let g:netrw_dirhist_6='/Users/cormac/work/gitolite-admin/conf'
-let g:netrw_dirhist_7='/Library/WebServer/Documents/shotclip.mac.com/docs'
-let g:netrw_dirhist_8='/private/etc/apache2'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/cormac/work/programming/python/djangodev/superquest/superquest/apps/assessment/api'
+let g:netrw_dirhist_2='/Users/cormac/work/programming/python/djangodev/corroborator/static/js'
+let g:netrw_dirhist_3='/Users/cormac/work/programming/python/djangodev/corroborator/static/sass'

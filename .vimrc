@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pathogen inclusion 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -6,13 +5,17 @@ call pathogen#infect()
 call pathogen#helptags()
 
 if has("autocmd")
-  " Drupal *.module and *.install files.
   augroup module
+    " Drupal *.module and *.install files.
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
     autocmd BufRead,BufNewFile *.inc set filetype=php
     autocmd BufRead,BufNewFile *.tpl set filetype=html
+    autocmd BufRead,BufNewFile *.dust set filetype=html
+    autocmd BufRead,BufNewFile *.wsgi set filetype=python
+    autocmd BufRead,BufNewFile *.json set filetype=javascript
+    autocmd BufRead,BufNewFile *.hbs set filetype=html
+    autocmd BufNewFile,BufRead *.ccss set filetype=sass
   augroup END
 endif
 
@@ -51,6 +54,8 @@ set noswapfile
 set hid " change buffer without save
 
 map <C-B> :NERDTreeToggle<cr> " open nerdtree file browser
+let NERDTreeIgnore = ['\.pyc$']
+
 
 " Use the arrows to switch buffers
 map <right> :bn<cr>
@@ -64,6 +69,11 @@ filetype plugin on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>z <C-Y>,
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Omni complete functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -72,7 +82,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete " no worky neither
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto complete drupal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set dict +=~/.vim/dictionaries/drupal6.dict
+"set dict +=~/.vim/dictionaries/drupal6.dict
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parentheses
@@ -80,17 +90,8 @@ set dict +=~/.vim/dictionaries/drupal6.dict
 :hi MatchParen cterm=bold ctermbg=none ctermfg=none "embolden matching parentheses
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Php doc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/bundle/phpdoc/phpdoc.vim 
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-P> :call PhpDocSingle()<CR> 
-vnoremap <C-P> :call PhpDocRange()<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_phpcs_conf=" --standard=DrupalCodingStandard --extensions=php,module,inc,install,test,profile,theme"
 " from https://github.com/spf13/spf13-vim/blob/master/.vimrc
 if has('statusline')
   set laststatus=2
@@ -112,11 +113,6 @@ endif
 " When vimrc is edited, reload it - doesn't seem to work always
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-map! <C-q> <C-xk> " supposed to map autocomplete to Ctrl - Space
-inoremap <C-x><C-o> <C-q>
-
-nmap <F4> :w<CR>:make<CR>:cw<CR>
-nmap <F8> :TagbarToggle<CR>
 set pastetoggle=<F2>
 
 iabbrev adn and
@@ -124,11 +120,25 @@ iabbrev tehn then
 iabbrev waht what
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => drush stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F5> :Dcc<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => macvim colors
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :colorscheme koehler
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => json formatting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>j :%!python -m json.tool<CR>
+
+" Add the virtualenv's site-packages to vim path
+if has("python") && !empty($VIRTUAL_ENV)
+python << EOF
+import os
+import sys
+a = os.environ['VIRTUAL_ENV'] + '/bin/activate_this.py'
+execfile(a, dict(__file__ = a))
+if 'PYTHONPATH' not in os.environ:
+    os.environ['PYTHONPATH'] = ''
+    os.environ['PYTHONPATH'] += ":"+os.getcwd()
+    os.environ['PYTHONPATH'] += ":".join(sys.path)
+EOF
+endif
