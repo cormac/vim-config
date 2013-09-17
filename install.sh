@@ -3,6 +3,7 @@ then
 cp ~/.vimrc ~/.vimrc.bak
 fi
 cp -r ~/.vim ~/.vim.bak
-rm -r ~/.vim
+rm -rf ~/.vim
 cp -r .vim ~/.vim
 cp .vimrc ~/.vimrc
+rm -rf ~/.vim/bundle/**/.git
