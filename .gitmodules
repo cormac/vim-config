@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-airline"]
 	path = .vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule ".vim/bundle/nerdtcommenter"]
+	path = .vim/bundle/nerdtcommenter
+	url = https://github.com/scrooloose/nerdcommenter
