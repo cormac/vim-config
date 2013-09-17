@@ -1,7 +1,8 @@
 Vim Configuration
 =================
 
-This is the vim configuration I am using day to day. Plugins include nerdtree and snipmate. I've created dictionaries for both drupal 6 and drupal 7 core functions too. You'll need to reference the one you want to use in the .vimrc. Currently it is pointed at the drupal6 file
+This is the vim configuration I am using day to day. Plugins can be seen in .vim/bundle directory.  
+All plugins are stored as git submodules
 
 Installation
 ------------
@@ -12,12 +13,12 @@ It also moves your old .vim folder to .vim.bak and writes my plugins into a new 
 Syntastic Requirements
 ----------------------
 
-js - jslint or jshint
-npm install -g jshint
+js - jslint or jshint  
+npm install -g jshint  
 
-python - pyflakes
-pip install pyflakes
-there is some work done on getting syntastic to play nice in virtualenv, but not quite there yet
+python - pyflakes  
+pip install pyflakes  
+there is some work done on getting syntastic to play nice in virtualenv, but not quite there yet  
 
 Update
 ------

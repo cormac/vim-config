@@ -1,3 +1,5 @@
+git submodule init
+git submodule update
 if [ -f ~/.vimrc ]
 then 
 cp ~/.vimrc ~/.vimrc.bak
