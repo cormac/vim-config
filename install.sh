@@ -10,3 +10,4 @@ cp -r .vim ~/.vim
 cp .vimrc ~/.vimrc
 rm -rf ~/.vim/bundle/**/.git
 rm ~/.vim/bundle/**/.gitignore
+cp -r snippets ~/.vim/bundle/snipmate/snippets
