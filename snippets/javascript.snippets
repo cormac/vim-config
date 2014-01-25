@@ -85,14 +85,16 @@ snippet it
 	});
 	
 snippet describe
-	describe( '${1}', function() {
+	describe('${1}', function() {
+	  beforeEach(function() {});
+	  afterEach(function() {});
+
 	  it('should ${2}', function(){
 	    ${3}	
 	  });
 	});
 snippet con
-  console.log( ${0} );
-
+	console.log(${1});
 snippet head
 	/*global define${0}*/
 	// Author: Cormac McGuire
@@ -108,3 +110,11 @@ snippet define
 		${3}
 	  }
 	);
+snippet mod
+	(function(document, window, undefined) {
+	  'use strict';
+	  ${1}
+	  return;
+	}(document, window));
+
+
