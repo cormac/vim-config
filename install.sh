@@ -1,3 +1,11 @@
+#!/bin/bash
+echo -n "Do you want clojure support (y/N)"
+read clojure
+
+if [ $clojure == "y" ]; then
+  git submodule add https://github.com/vim-scripts/VimClojure .vim/bundle/VimClojure
+fi
+
 git submodule init
 git submodule update
 if [ -f ~/.vimrc ]
