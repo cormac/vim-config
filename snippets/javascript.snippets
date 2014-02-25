@@ -28,22 +28,6 @@ snippet ife
 # tertiary conditional
 snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
-# switch
-snippet switch
-	switch(${1:expression}) {
-		case '${3:case}':
-			${4:// code}
-			break;
-		${5}
-		default:
-			${2:// code}
-	}
-# case
-snippet case
-	case '${1:case}':
-		${2:// code}
-		break;
-	${3}
 # for (...) {...}
 snippet for
 	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
@@ -93,14 +77,12 @@ snippet describe
 	    ${3}	
 	  });
 	});
-snippet con
-	console.log(${1});
 snippet head
-	/*global define${0}*/
+	/*global IC, $, _${1}*/
 	// Author: Cormac McGuire
-	// ### ${1}
+	// ### ${2}
 	// 
-	${2}
+	${3}
 	
 snippet define
 	define(
@@ -110,11 +92,47 @@ snippet define
 		${3}
 	  }
 	);
-snippet mod
-	(function(document, window, undefined) {
+snippet testheadsinon
+	/*global IC, $, expect, beforeEach, afterEach, it, describe, sinon */
+	// Author: Cormac McGuire
+	// ${1}
+	describe('${2}', function() {
 	  'use strict';
-	  ${1}
-	  return;
-	}(document, window));
+	  var xhr, requests;
+	  beforeEach(function() {
+	  xhr = sinon.useFakeXMLHttpRequest();
+	  requests  = [];
+        xhr.onCreate = function(req) { requests.push(req); };
+	  });
+	  afterEach(function() {
+	    xhr.restore();
+	  });
 
+	  it('should ${3}', function(){
+	    ${4}	
+	  });
+	});
+	
+snippet testhead
+	/*global IC, $, expect, beforeEach, afterEach, it, describe, sinon */
+	// Author: Cormac McGuire
+	// ${1}
+	describe('${2}', function() {
+	  'use strict';
+	  beforeEach(function() {
+	  });
+	  afterEach(function() {
+	  });
 
+	  it('should ${3}', function(){
+	    ${4}	
+	  });
+	});
+	
+snippet module
+	IC.define('App.View.${1}', function(IC, $, _) {
+	  'use strict';
+	  return IC.App.View.Base.extend({
+	    ${2}
+	  });
+	});
